@@ -1,7 +1,7 @@
 {
-  "name": "yncki/php-fast-image-compare",
+  "name": "sergix44/php-fast-image-compare",
   "description": "Image Comparer with different aspect ratios and sizes. Can extract duplicate and unique images in directory and much more.",
-  "keywords":[
+  "keywords": [
     "image",
     "compare",
     "duplicate",
@@ -13,24 +13,27 @@
     {
       "name": "Paweł Plewa",
       "email": "pawel.plewa@gmail.com"
+    },
+    {
+      "name": "Sergio Brighenti",
+      "email": "sergio@brighenti.me"
     }
   ],
   "require": {
-    "php": ">=7.0",
+    "php": ">=8.0",
     "ext-imagick": "*",
     "ext-gd": "*",
-    "gumlet/php-image-resize": "1.7.0",
+    "gumlet/php-image-resize": "^2.0.1",
     "marc1706/fast-image-size": "^1.1",
-    "symfony/var-dumper": "^4.0",
-    "symfony/cache": "^4.0"
+    "symfony/cache": "^6.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^7"
+    "phpunit/phpunit": "^9"
   },
   "type": "library",
   "autoload": {
     "psr-4": {
-      "pepeEpe\\FastImageCompare\\": "src"
+      "SergiX44\\FastImageCompare\\": "src"
     }
   }
 }

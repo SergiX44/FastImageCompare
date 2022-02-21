@@ -1,17 +1,10 @@
 <?php
-/**
- * (c) Paweł Plewa <pawel.plewa@gmail.com> 2018
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- *
- */
 
-namespace pepeEpe\FastImageCompare;
+namespace SergiX44\FastImageCompare;
 
 
+use Exception;
 use Gumlet\ImageResize;
-use Gumlet\ImageResizeException;
 
 class NormalizerSquaredSize extends NormalizableBase
 {
@@ -20,7 +13,7 @@ class NormalizerSquaredSize extends NormalizableBase
     public function __construct($sampleSize = 8)
     {
         parent::__construct();
-        $this->setSampleSize(max(2,$sampleSize));
+        $this->setSampleSize(max(2, $sampleSize));
     }
 
     public function normalize($inputImagePath, $output, $tempDir)
@@ -35,7 +28,7 @@ class NormalizerSquaredSize extends NormalizableBase
             $imageResize->save($output, IMAGETYPE_PNG);
             unset($imageResize);
             return $output;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             copy($inputImagePath, $output);
             return $output;
         }
@@ -56,7 +49,7 @@ class NormalizerSquaredSize extends NormalizableBase
     }
 
     /**
-     * @param int $sampleSize
+     * @param  int  $sampleSize
      */
     public function setSampleSize($sampleSize)
     {

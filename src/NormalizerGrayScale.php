@@ -7,25 +7,28 @@
  *
  */
 
-namespace pepeEpe\FastImageCompare;
+namespace SergiX44\FastImageCompare;
+
+use Imagick;
 
 class NormalizerGrayScale extends NormalizableBase {
     /**
      * @param $inputImagePath
-     * @param $outputImagePath
+     * @param $output
      * @param $tempDir
      * @return string path
+     * @throws \ImagickException
      */
-    public function normalize($inputImagePath, $outputImagePath, $tempDir)
+    public function normalize($inputImagePath, $output, $tempDir)
     {
-        $imageInstanceLeft = new \imagick();
+        $imageInstanceLeft = new imagick();
         $imageInstanceLeft->readImage($inputImagePath);
-        $imageInstanceLeft->transformimagecolorspace(\Imagick::COLORSPACE_GRAY);
-        $imageInstanceLeft->setColorspace(\Imagick::COLORSPACE_GRAY);
-        $imageInstanceLeft->writeImage($outputImagePath);
+        $imageInstanceLeft->transformimagecolorspace(Imagick::COLORSPACE_GRAY);
+        $imageInstanceLeft->setColorspace(Imagick::COLORSPACE_GRAY);
+        $imageInstanceLeft->writeImage($output);
         $imageInstanceLeft->clear();
         unset($imageInstanceLeft);
-        return $outputImagePath;
+        return $output;
     }
 
     /**

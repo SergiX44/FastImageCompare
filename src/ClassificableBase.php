@@ -1,6 +1,6 @@
 <?php
 
-namespace pepeEpe\FastImageCompare;
+namespace SergiX44\FastImageCompare;
 
 abstract class ClassificableBase implements IClassificable
 {
@@ -20,24 +20,24 @@ abstract class ClassificableBase implements IClassificable
      * @param $inputFile
      * @param $instance FastImageCompare
      * @return string[]
+     * @throws \Psr\Cache\InvalidArgumentException
      */
     final public function classify($inputFile, FastImageCompare $instance)
     {
         if (!is_null($instance->getCacheAdapter())) {
 
-            $cacheKey = $this->getShortClassName() . '-' . $this->generateCacheKey($inputFile);
-            $cacheKey .= '-' . md5($inputFile);
+            $cacheKey = $this->getShortClassName().'-'.$this->generateCacheKey($inputFile);
+            $cacheKey .= '-'.md5($inputFile);
 
             $item = $instance->getCacheAdapter()->getItem($cacheKey);
             if ($item->isHit()) {
-                $result = $item->get();
-                return $result;
-            } else {
-                $result = $this->internalClassify($inputFile, $instance);
-                $item->set($result);
-                $instance->getCacheAdapter()->save($item);
-                return $result;
+                return $item->get();
             }
+
+            $result = $this->internalClassify($inputFile, $instance);
+            $item->set($result);
+            $instance->getCacheAdapter()->save($item);
+            return $result;
 
         }
         return $this->internalClassify($inputFile, $instance);

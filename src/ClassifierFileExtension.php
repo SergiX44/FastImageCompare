@@ -1,6 +1,6 @@
 <?php
 
-namespace pepeEpe\FastImageCompare;
+namespace SergiX44\FastImageCompare;
 
 class ClassifierFileExtension extends ClassificableBase
 {
@@ -12,7 +12,7 @@ class ClassifierFileExtension extends ClassificableBase
     protected function internalClassify($inputFile, FastImageCompare $instance)
     {
         $ext = pathinfo($inputFile, PATHINFO_EXTENSION);
-        return ['extension:' . $ext];
+        return ['extension:'.$ext];
     }
 
     /**

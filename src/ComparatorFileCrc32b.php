@@ -1,14 +1,7 @@
 <?php
-/**
- * (c) Paweł Plewa <pawel.plewa@gmail.com> 2018
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- *
- */
 
-namespace pepeEpe\FastImageCompare;
-use Psr\Log\InvalidArgumentException;
+namespace SergiX44\FastImageCompare;
+
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 
 /**
@@ -28,30 +21,32 @@ class ComparatorFileCrc32b extends ComparableBase
      * @param $instance FastImageCompare
      * @return float percentage difference in range 0..1
      */
-    public function calculateDifference($imageLeftNormalized, $imageRightNormalized, $imageLeftOriginal, $imageRightOriginal, $enoughDifference,FastImageCompare $instance)
+    public function calculateDifference($imageLeftNormalized, $imageRightNormalized, $imageLeftOriginal, $imageRightOriginal, $enoughDifference, FastImageCompare $instance)
     {
-        $left   = $this->cachedHash($imageLeftOriginal,$instance->getCacheAdapter());
-        $right  = $this->cachedHash($imageRightOriginal,$instance->getCacheAdapter());
+        $left = $this->cachedHash($imageLeftOriginal, $instance->getCacheAdapter());
+        $right = $this->cachedHash($imageRightOriginal, $instance->getCacheAdapter());
 
         return ($left === $right) ? 0.0 : 1.0;
     }
 
     /**
      * @param $filePath
-     * @param AdapterInterface $cacheAdapter
+     * @param  AdapterInterface  $cacheAdapter
      * @return string
+     * @throws \Psr\Cache\InvalidArgumentException
      */
-    private function cachedHash($filePath, $cacheAdapter){
+    private function cachedHash($filePath, $cacheAdapter)
+    {
         $key = Utils::getClassNameWithoutNamespace($this).'.'.md5($filePath);
         $item = $cacheAdapter->getItem($key);
-        if ($item->isHit()){
+        if ($item->isHit()) {
             return $item->get();
-        } else {
-            $result = hash('crc32b',file_get_contents($filePath));
-            $item->set($result);
-            $cacheAdapter->save($item);
-            return $result;
         }
+
+        $result = hash('crc32b', file_get_contents($filePath));
+        $item->set($result);
+        $cacheAdapter->save($item);
+        return $result;
     }
 
     public function generateCacheKey($imageLeft, $imageRight)

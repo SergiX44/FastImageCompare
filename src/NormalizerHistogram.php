@@ -1,24 +1,21 @@
 <?php
-/**
- * (c) Paweł Plewa <pawel.plewa@gmail.com> 2018
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- *
- */
 
-namespace pepeEpe\FastImageCompare;
+namespace SergiX44\FastImageCompare;
 
-class NormalizerHistogram extends NormalizableBase {
+use imagick;
+
+class NormalizerHistogram extends NormalizableBase
+{
     /**
      * @param $inputImagePath
      * @param $output
      * @param $tempDir
      * @return string path
+     * @throws \ImagickException
      */
     public function normalize($inputImagePath, $output, $tempDir)
     {
-        $imageInstanceLeft = new \imagick();
+        $imageInstanceLeft = new imagick();
         $imageInstanceLeft->readImage($inputImagePath);
         $imageInstanceLeft->equalizeImage();
         $imageInstanceLeft->writeImage($output);

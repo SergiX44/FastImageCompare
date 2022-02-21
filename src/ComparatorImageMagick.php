@@ -1,13 +1,8 @@
 <?php
-/**
- * (c) Paweł Plewa <pawel.plewa@gmail.com> 2018
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- *
- */
 
-namespace pepeEpe\FastImageCompare;
+namespace SergiX44\FastImageCompare;
+
+use Imagick;
 
 class ComparatorImageMagick extends ComparableBase
 {
@@ -50,21 +45,21 @@ class ComparatorImageMagick extends ComparableBase
 
     /**
      * Creates a ImageMagick comparator instance with default metric METRIC_MAE
-     * @param int $metric
-     * @param INormalizable[] $normalizers
+     * @param  int  $metric
+     * @param  INormalizable[]  $normalizers
      * @param $ignoreAlpha bool
      */
-    public function __construct($metric = self::METRIC_MAE, $normalizers = null,$ignoreAlpha = false)
+    public function __construct($metric = self::METRIC_MAE, $normalizers = null, $ignoreAlpha = false)
     {
         parent::__construct();
         $this->setMetric($metric);
         $this->setIgnoreAlpha($ignoreAlpha);
 
-        if (is_null($normalizers)){
+        if (is_null($normalizers)) {
             $this->registerNormalizer(new NormalizerSquaredSize(8));
-        } elseif (is_array($normalizers)){
+        } elseif (is_array($normalizers)) {
             $this->setNormalizers($normalizers);
-        } elseif ($normalizers instanceof INormalizable){
+        } elseif ($normalizers instanceof INormalizable) {
             $this->registerNormalizer($normalizers);
         }
 
@@ -78,21 +73,22 @@ class ComparatorImageMagick extends ComparableBase
      * @param $enoughDifference float
      * @param $instance FastImageCompare
      * @return float percentage difference in range 0..1
+     * @throws \ImagickException
      */
-    public function calculateDifference($imageLeftNormalized, $imageRightNormalized, $imageLeftOriginal, $imageRightOriginal, $enoughDifference,FastImageCompare $instance)
+    public function calculateDifference($imageLeftNormalized, $imageRightNormalized, $imageLeftOriginal, $imageRightOriginal, $enoughDifference, FastImageCompare $instance)
     {
-        $imageInstanceLeft = new \imagick();
-        $imageInstanceRight = new \imagick();
+        $imageInstanceLeft = new imagick();
+        $imageInstanceRight = new imagick();
 
         //must be set before readImage
         //fuzz is only used for AE metric but we set it always for caching purposes
-        $imageInstanceLeft->SetOption('fuzz', (int)($enoughDifference * 100) . '%'); //http://www.imagemagick.org/script/command-line-options.php#define
+        $imageInstanceLeft->SetOption('fuzz', (int) ($enoughDifference * 100).'%'); //http://www.imagemagick.org/script/command-line-options.php#define
 
         $imageInstanceLeft->readImage($imageLeftNormalized);
         $imageInstanceRight->readImage($imageRightNormalized);
 
 
-        if ($this->isIgnoreAlpha()){
+        if ($this->isIgnoreAlpha()) {
             $imageInstanceLeft->setImageBackgroundColor('#FFFFFF');
             $imageInstanceLeft = $imageInstanceLeft->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
 
@@ -113,8 +109,7 @@ class ComparatorImageMagick extends ComparableBase
         }
         $imageInstanceLeft->clear();
         $imageInstanceRight->clear();
-        unset($imageInstanceLeft);
-        unset($imageInstanceRight);
+        unset($imageInstanceLeft, $imageInstanceRight);
         return $difference;
     }
 
@@ -128,34 +123,23 @@ class ComparatorImageMagick extends ComparableBase
     }
 
     /**
+     * @param  int  $metric
      * @see \Imagick::METRIC_*
-     * @param int $metric
      */
     public function setMetric($metric)
     {
         $this->metric = $metric;
     }
 
-    private function localMetricToImagickMetric($metric){
-        switch ($metric) {
-            case self::METRIC_AE:
-                return \Imagick::METRIC_ABSOLUTEERRORMETRIC;
-                break;
-            case self::METRIC_MAE:
-                return \Imagick::METRIC_MEANABSOLUTEERROR;
-                break;
-            case self::METRIC_MSE:
-                return \Imagick::METRIC_MEANSQUAREERROR;
-                break;
-            case self::METRIC_RMSE:
-                return \Imagick::METRIC_ROOTMEANSQUAREDERROR;
-                break;
-            case self::METRIC_NCC:
-                return \Imagick::METRIC_NORMALIZEDCROSSCORRELATIONERRORMETRIC;
-                break;
-            default:
-                return \Imagick::METRIC_MEANABSOLUTEERROR;
-        }
+    private function localMetricToImagickMetric($metric)
+    {
+        return match ($metric) {
+            self::METRIC_AE => Imagick::METRIC_ABSOLUTEERRORMETRIC,
+            self::METRIC_MSE => Imagick::METRIC_MEANSQUAREERROR,
+            self::METRIC_RMSE => Imagick::METRIC_ROOTMEANSQUAREDERROR,
+            self::METRIC_NCC => Imagick::METRIC_NORMALIZEDCROSSCORRELATIONERRORMETRIC,
+            default => Imagick::METRIC_MEANABSOLUTEERROR,
+        };
     }
 
     /**
@@ -167,16 +151,16 @@ class ComparatorImageMagick extends ComparableBase
     }
 
     /**
-     * @param bool $ignoreAlpha
+     * @param  bool  $ignoreAlpha
      */
     public function setIgnoreAlpha($ignoreAlpha)
     {
         $this->ignoreAlpha = $ignoreAlpha;
     }
 
-    public function generateCacheKey($imageLeft,$imageRight)
+    public function generateCacheKey($imageLeft, $imageRight)
     {
-        return implode('-', array($this->getMetric(),$this->isIgnoreAlpha()?'ia':'iaOff'));
+        return implode('-', [$this->getMetric(), $this->isIgnoreAlpha() ? 'ia' : 'iaOff']);
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace pepeEpe\FastImageCompare;
+namespace SergiX44\FastImageCompare;
 
 
 interface IClassificable

@@ -1,18 +1,14 @@
 <?php
-/**
- * (c) Paweł Plewa <pawel.plewa@gmail.com> 2018
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- *
- */
 
-namespace pepeEpe\FastImageCompare;
+namespace SergiX44\FastImageCompare;
 
 
-abstract class NormalizableBase implements INormalizable {
+use RuntimeException;
 
-    protected $ensuredCacheDirExists = null;
+abstract class NormalizableBase implements INormalizable
+{
+
+    protected $ensuredCacheDirExists;
 
     /**
      * @var
@@ -36,8 +32,9 @@ abstract class NormalizableBase implements INormalizable {
      * @param $filePath
      * @return string
      */
-    private function buildCachePath($filePath){
-        return $this->getShortClassName() . DIRECTORY_SEPARATOR . $this->getCacheKey($filePath);
+    private function buildCachePath($filePath)
+    {
+        return $this->getShortClassName().DIRECTORY_SEPARATOR.$this->getCacheKey($filePath);
     }
 
     /**
@@ -45,13 +42,13 @@ abstract class NormalizableBase implements INormalizable {
      * @param $temporaryDirectory
      * @return string
      */
-    public function getCachedFile($filePath,$temporaryDirectory)
+    public function getCachedFile($filePath, $temporaryDirectory)
     {
-        $dest = $temporaryDirectory . $this->buildCachePath($filePath);
-        if (!$this->ensuredCacheDirExists){
-            $this->ensuredCacheDirExists  = dirname($dest);
-            if (!file_exists($this->ensuredCacheDirExists)){
-                @mkdir($this->ensuredCacheDirExists,fileperms($temporaryDirectory));
+        $dest = $temporaryDirectory.$this->buildCachePath($filePath);
+        if (!$this->ensuredCacheDirExists) {
+            $this->ensuredCacheDirExists = dirname($dest);
+            if (!file_exists($this->ensuredCacheDirExists) && !mkdir($concurrentDirectory = $this->ensuredCacheDirExists, fileperms($temporaryDirectory)) && !is_dir($concurrentDirectory)) {
+                throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
             }
         }
         return $dest.'-'.basename($filePath);

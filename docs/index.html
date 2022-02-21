@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://php-image-comparer.axl.pl/ -->
+<html lang="en" class=" ufkjadi idc0_336"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Image Comparer library for PHP</title>
+<!-- Meta -->
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Compare images in directories, find duplicates, extract unique images - PHP">
+<meta name="author" content="Paweł Plewa">
+<link rel="shortcut icon" href="https://php-image-comparer.axl.pl/favicon.ico">
+<link href="./docs_files/css" rel="stylesheet" type="text/css">
+<!-- Global CSS -->
+<link rel="stylesheet" href="./docs_files/bootstrap.min.css">
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="./docs_files/font-awesome.css">
+<link rel="stylesheet" href="./docs_files/prism.css">
+<link rel="stylesheet" href="./docs_files/style.css">
+<link rel="stylesheet" href="./docs_files/ion.rangeSlider.css">
+<link rel="stylesheet" href="./docs_files/ion.rangeSlider.skinModern.css">
+
+<!-- Theme CSS -->
+<link id="theme-style" rel="stylesheet" href="./docs_files/styles.css">
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->    
+
+<body class="body-green">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="https://php-image-comparer.axl.pl/">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Fast </span><span class="text-bold">Image Comparer for PHP</span>
+                        </a>
+                    </h1>
+                </div><!--//branding-->
+                <ol class="breadcrumb">
+<!--                    <li><a href="index.html">Home</a></li>-->
+                    <li class="active">Supports PNG, JPG, WEBP, BMP</li>
+                </ol>
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+<!--                <div id="doc-header" class="doc-header text-center">-->
+<!--                    <h1 class="doc-title"><i class="icon fa fa-paper-plane"></i> Quick Start</h1>-->
+<!--                    <div class="meta"><i class="fa fa-archive"></i> version 1.0.0</div>-->
+<!--                </div>-->
+                <div class="doc-body">
+                    <div class="doc-content">
+                        <div class="content-inner">
+                            <section id="download-section" class="doc-section">
+                                <h2 class="section-title">Hello world</h2>
+                                <div class="section-block">
+                                    <p>
+                                        Comparing photos and searching for duplicates is a difficult and demanding task. Thanks to libraries like ImageMagick, the whole task is much simpler. This library allows finding similar photos in directories, extract duplicate images using Classifiers, Normalizers and Comparators.
+                                    </p>
+                                    <a href="https://github.com/SergiX44/FastImageCompare" class="btn btn-green" target="_blank"><i class="fa fa-github"></i> GitHub Repository</a>
+                                </div>
+                            </section><!--//doc-section-->
+                            <section id="requirements-section" class="doc-section">
+                                <h2 class="section-title">Requirements</h2>
+                                <div class="section-block">
+                                    <ul class="list">
+                                        <li>ImageMagick extension</li>
+                                        <li>GD extension</li>
+                                        <li>PHP &gt;= 8.0</li>
+                                    </ul>
+                                </div>
+                            </section>
+                            <section id="installation-section" class="doc-section">
+                                <h2 class="section-title">Installation</h2>
+                                <div class="section-block">
+<!--                                    <h3 class="block-title">Requirements</h3>-->
+                                    <div class="code-block">
+                                        <p><code>composer require sergix44/php-fast-image-compare</code></p>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+<!--                                <div id="step2"  class="section-block">-->
+<!--                                    <h3 class="block-title">Step Two</h3>-->
+<!--                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.-->
+<!--                                    </p>-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-6 col-sm-6 col-xs-12">-->
+<!--                                            <h6>Un-ordered list example</h6>-->
+<!--                                            <ul class="list">-->
+<!--        										<li>Lorem ipsum dolor sit amet.</li>-->
+<!--        										<li>Aliquam tincidunt mauris.</li>-->
+<!--        										<li>Ultricies eget vel aliquam libero.-->
+<!--        											<ul>-->
+<!--        												<li>Turpis pulvinar</li>-->
+<!--        												<li>Feugiat scelerisque</li>-->
+<!--        												<li>Ut tincidunt</li>-->
+<!--        											</ul>-->
+<!--        										</li>-->
+<!--        										<li>Pellentesque habitant morbi.</li>-->
+<!--        										<li>Praesent dapibus, neque id.</li>-->
+<!--        									</ul>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-md-6 col-sm-6 col-xs-12">-->
+<!--                                            <h6>Ordered list example</h6>-->
+<!--                                            <ol class="list">-->
+<!--        										<li>Lorem ipsum dolor sit amet.</li>-->
+<!--        										<li>Aliquam tincidunt mauris.</li>-->
+<!--        										<li>Ultricies eget vel aliquam libero.-->
+<!--        											<ul>-->
+<!--        												<li>Turpis pulvinar</li>-->
+<!--        												<li>Feugiat scelerisque</li>-->
+<!--        												<li>Ut tincidunt</li>-->
+<!--        											</ul>-->
+<!--        										</li>-->
+<!--        										<li>Pellentesque habitant morbi.</li>-->
+<!--        										<li>Praesent dapibus, neque id.</li>-->
+<!--        									</ol>-->
+<!--                                        </div>-->
+<!--                                    </div><!--//row-->
+<!--                                </div><!--//section-block-->
+<!--                                <div id="step3"  class="section-block">-->
+<!--                                    <h3 class="block-title">Step Three</h3>-->
+<!--                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis.-->
+<!--                                    </p>-->
+<!--                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+
+                            <section id="methods-section" class="doc-section">
+                                <h2 class="section-title">Methods</h2>
+                                <div class="section-block">
+
+                                    <ul class="list">
+                                        <li>areSimilar</li>
+                                        <li>areDifferent</li>
+                                        <li>findDuplicates</li>
+                                        <li>findUniques</li>
+                                        <li>clearCache</li>
+                                        <li>setTemporaryDirectory</li>
+                                        <li>setTemporaryDirectoryPermissions</li>
+                                        <li>registerClassifier</li>
+                                        <li>registerComparator</li>
+<!--                                        <li>registerNormalizer</li>-->
+                                        <li>setChunkSize</li>
+                                        <li>setCacheAdapter</li>
+                                    </ul>
+                                </div>
+                            </section>
+
+                            <h2 id="usage-section" class="section-title">Usage</h2>
+                            <div class="callout-block callout-success">
+                                <div class="icon-holder">
+                                    <i class="fa fa-thumbs-up"></i>
+                                </div><!--//icon-holder-->
+                                <div class="content">
+                                    <h4 class="callout-title">Enough percentage (difference percentage)</h4>
+                                    <p>During comparison of images an <strong>enough percentage</strong> is required.<br>This is a float value between 0.0 and 1.0 where 0.0 = 0%, 0.01 = 1% etc.<br>Recommended value is between 0.05 - 0.15 for MAE metric with 8px normalized sample. Default is 0.05 (5%).
+                                        <br>Note that for each used metric the comparing method will report different values. For bigger normalized sample you should increase this value.</p>
+                                </div><!--//content-->
+                            </div>
+                            <section id="usage-basic" class="doc-section">
+                                <h3 class="section-title">Basic</h3>
+                                <br><p>To find similar images in array which difference is not greater than 10%</p>
+                                <div class="code-block">
+                                    <h6>Code</h6>
+                                    <pre class=" language-php"><code class=" language-php"><span class="token keyword">require_once</span> <span class="token string">'vendor/autoload.php'</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>FastImageCompare</span><span class="token punctuation">;</span>
+
+<span class="token variable">$instance</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FastImageCompare</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$images</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+    <span class="token string">'path/to/file/1'</span><span class="token punctuation">,</span>
+    <span class="token string">'path/to/file/2'</span><span class="token punctuation">,</span>
+    <span class="token string">'path/to/file/3'</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$similarArray</span> <span class="token operator">=</span> <span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">findSimilar</span><span class="token punctuation">(</span><span class="token variable">$images</span><span class="token punctuation">,</span><span class="token number">0.10</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                </div>
+                            </section>
+
+                            <section id="usage-preffered-picks" class="doc-section">
+                                <h3 class="section-title">Preffered picks</h3>
+                                <div class="section-block">
+                                    <p>Preffered picks is a mechanism for selecting image from duplicates based on specified attribute.</p>
+
+                                    <p>Currently supported preffered pick modes are:</p>
+                                    <ul class="list">
+                                        <li>PREFER_ANY</li>
+                                        <li>PREFER_LARGER_IMAGE <span class="text-muted"> - more pixels</span> | *default </li>
+                                        <li>PREFER_SMALLER_IMAGE <span class="text-muted"> - less pixels</span></li>
+                                        <li>PREFER_LARGER_DIFFERENCE <span class="text-muted"> - larger difference</span></li>
+                                        <li>PREFER_LOWER_DIFFERENCE <span class="text-muted"> - smaller difference</span></li>
+                                        <li>PREFER_COLOR <span class="text-muted"> - color first</span></li>
+                                        <li>PREFER_GRAYSCALE <span class="text-muted"> - grayscale first</span></li>
+                                    </ul>
+                                    <p>For now only <b>findUniques</b> method supports preffered pick.</p>
+                                    <p>For example take a look at specified task:<br><b>Find unique images and when a duplicate is found - give me larger image.</b></p>
+                                </div>
+
+                                <div class="code-block">
+                                    <h6>Code</h6>
+                                    <pre class=" language-php"><code class=" language-php"><span class="token keyword">require_once</span> <span class="token string">'vendor/autoload.php'</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>FastImageCompare</span><span class="token punctuation">;</span>
+
+<span class="token variable">$instance</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FastImageCompare</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$images</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+    <span class="token string">'path/to/file/imageA_original_1000x500.png'</span><span class="token punctuation">,</span>
+    <span class="token string">'path/to/file/imageA_resized_200x125.png'</span><span class="token punctuation">,</span>
+    <span class="token string">'path/to/file/imageC.png'</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$similarArray</span> <span class="token operator">=</span> <span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">findUniques</span><span class="token punctuation">(</span><span class="token variable">$images</span><span class="token punctuation">,</span><span class="token number">0.10</span><span class="token punctuation">,</span>FastImageCompare<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">PREFER_LARGER_IMAGE</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// returns $similarArray  = [</span>
+<span class="token comment" spellcheck="true">//    'path/to/file/imageA_original_1000x500.png', &lt;-- library excluded imageA_resized_200x125.png because it was smaller than original</span>
+<span class="token comment" spellcheck="true">//    'path/to/file/imageC.png'</span>
+<span class="token comment" spellcheck="true">// ]</span></code></pre>
+                                </div>
+                            </section>
+
+<!--                            <section id="usage-advanced" class="doc-section">-->
+<!--                                <h3 class="section-title">Advanced</h3>-->
+<!--                                <div class="section-block">-->
+<!---->
+<!--                                </div>-->
+<!--                            </section>-->
+
+                            <section id="usage-classifiers" class="doc-section">
+                                <h3 class="section-title">Classifiers</h3>
+                                <div class="section-block">
+
+                                    <p>Before comparing first thing to do is to classify images into groups. You can register many classifiers using method registerClassifier(). Each classifier takes a filepath as input and returns tags which describe image. <br>
+                                    Images which are in different groups ( have different tags ) are interpreted as different. By default no clasifiers are registered.</p>
+                                    <p>Available classifiers</p>
+                                    <ul class="list">
+                                        <li><b>ClassifierColor</b> - optimized classifier for counting colors and determining image is grayscale or not</li>
+                                        <li><b>ClassifierFileExtension</b></li>
+                                    </ul>
+                                </div>
+                            </section>
+
+                            <section id="usage-normalizers" class="doc-section">
+                                <h3 class="section-title">Normalizers</h3>
+                                <div class="section-block">
+                                    <p>It is a good idea to normalize images before comparing. Normalizers are registered per comparator using method registerNormalizer(). Many normalizers can be registered for each comparator. You can write your own normalizers by extending class NormalizableBase</p>
+                                    <p>Available normalizers: </p>
+                                    <ul class="list">
+                                        <li><strong>NormalizerSquaredSize</strong> - this normalizer resizes images to common width &amp; height, by default to 8x8 px and to png format.</li>
+                                        <li><strong>NormalizerGrayScale</strong> - this normalizer changes colorspace of image to be grayscale.</li>
+                                    </ul>
+                                </div>
+                            </section>
+
+                            <section id="usage-comparators" class="doc-section">
+                                <h3 class="section-title">Comparators</h3>
+                                <div class="section-block">
+                                    <p>Comparators are used to compare two images, can implement additional settings. By default only one <a href="https://github.com/yncki/FastImageCompare/blob/master/src/ComparatorImageMagick.php" target="_blank">Comparator ImageMagick</a> is registered with default settings. You can write your own comparators by extending class ComparableBase.<br>Each comparator can work in two modes: STRICT and PASSTHROUGH.<br>Comparator can have many normalizers.</p>
+                                    <p>Available comparators: </p>
+                                    <ul class="list">
+                                        <li><strong>ComparatorFileCrc32b</strong></li>
+                                        <li><strong>ComparatorImageMagick</strong></li>
+                                    </ul>
+
+                                    <p>To manually register comparators pass null as second argument to constructor or use method setComparators()</p>
+                                    <div class="code-block">
+                                        <h6>Code</h6>
+                                        <pre class=" language-php"><code class=" language-php"><span class="token keyword">require_once</span> <span class="token string">'vendor/autoload.php'</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>FastImageCompare</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>ComparatorImageMagick</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>NormalizerSquaredSize</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>ComparatorFileCrc32b</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>IComparable</span><span class="token punctuation">;</span>
+
+<span class="token variable">$instance</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FastImageCompare</span><span class="token punctuation">(</span><span class="token string">'/my/tmp/dir/'</span><span class="token punctuation">,</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//register crc32b comparator with mode</span>
+<span class="token comment" spellcheck="true">//STRICT - when comparing images will have identical hash next comparators wont launch</span>
+<span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">registerComparator</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ComparatorFileCrc32b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>IComparable<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">STRICT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//create second Comparator ( ComparatorImageMagick ) with metric NCC and no normalizers</span>
+<span class="token variable">$imageMagickComparator</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ComparatorImageMagick</span><span class="token punctuation">(</span>ComparatorImageMagick<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">METRIC_NCC</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//register size normalizer for imageMagick with sample size 16px x 16px</span>
+<span class="token variable">$imageMagickComparator</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">registerNormalizer</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">NormalizerSquaredSize</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//register second comparator as PASSTHROUGH</span>
+<span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">registerComparator</span><span class="token punctuation">(</span><span class="token variable">$imageMagickComparator</span><span class="token punctuation">,</span>IComparable<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">PASSTHROUGH</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//ready for use</span></code></pre>
+                                    </div>
+                                    <hr>
+                                    <h3><a id="ComparatorImageMagick-settings" name="ComparatorImageMagick-settings"></a>ComparatorImageMagick settings</h3>
+                                    <p>This comparator supports various settings but the most important is compare metric. Refer to <a href="http://www.imagemagick.org/Usage/compare/#compare" target="_blank">ImageMagick documentation</a> for more info.</p>
+                                    <ul class="list">
+                                        <li>Metrics - applicable by setMetric() or in constructor()
+                                            <ul>
+                                                <li>ComparatorImageMagick::<strong>METRIC_AE</strong>  - Absolute Error count of the number of different pixels</li>
+                                                <li>ComparatorImageMagick::<strong>METRIC_MAE</strong> - Mean absolute error (average channel error distance))</li>
+                                                <li>ComparatorImageMagick::<strong>METRIC_NCC</strong> - Normalized cross correlation</li>
+                                                <li>ComparatorImageMagick::<strong>METRIC_MSE</strong> - Mean squared error (averaged squared error distance)</li>
+                                                <li>ComparatorImageMagick::<strong>METRIC_RMSE</strong> - (sq)root mean squared error, ie: sqrt(MSE)</li>
+                                            </ul>
+                                        </li>
+                                        <li>setIgnoreAlpha($boolean) - when comparing transparent images set true to ignore alpha channel</li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="callout-block callout-info">
+                                    <div class="icon-holder">
+                                        <i class="fa fa-info-circle"></i>
+                                    </div><!--//icon-holder-->
+                                    <div class="content">
+                                        <h4 class="callout-title">Metrics</h4>
+                                        <p>All resulting metrics have been implemented to return normalized 0.0 - 1.0 difference value.<br><b>Metrics availability depends on imageMagick version installed on target machine</b></p>
+                                    </div><!--//content-->
+                                </div>
+
+                            </section>
+
+                            <section id="usage-cache" class="doc-section">
+                                <h3 class="section-title">Caching and Temporary directory</h3>
+                                <div class="section-block">
+<p>Because comparing images is very cpu expensive job you should enable caching. There are two levels of cache.
+    One is temporary directory which caches normalizers output, second is available cache interface for comparators results.<br>Temporary directory is required, if none specified system temp directory is used.<br>For comparators cache you can use any <a href="https://www.php-fig.org/psr/psr-6/" target="_blank">PSR-6 compatible caching adapter</a>.
+<br><br>
+</p>
+                                    <div class="code-block">
+                                        <h6>To register cache adapter - FilesystemAdapter from Symfony in the same directory as temporary directory.</h6>
+                                        <pre class=" language-php"><code class=" language-php"><span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">setCacheAdapter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FilesystemAdapter</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">3600</span><span class="token punctuation">,</span> <span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">getTemporaryDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <h6>To clear all cache</h6>
+                                        <pre class=" language-php"><code class=" language-php"><span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">clearCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                        <h6>To clear cache files older than 24h pass seconds as first parameter</h6>
+                                        <pre class=" language-php"><code class=" language-php"><span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">clearCache</span><span class="token punctuation">(</span><span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+                                    </div>
+                                </div>
+                            </section>
+
+                            <h2 id="examples-section" class="section-title">Examples</h2>
+
+                                <section id="sample-section-00" class="doc-section">
+                                    <h3 class="section-title">Basic Example 1 - Comparing two files</h3>
+
+
+                                    <div class="code-block">
+                                        <h6>Code</h6>
+                                        <pre class=" language-php"><code class=" language-php"><span class="token keyword">require_once</span> <span class="token string">'vendor/autoload.php'</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>FastImageCompare</span><span class="token punctuation">;</span>
+
+<span class="token variable">$instance</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FastImageCompare</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$bool</span> <span class="token operator">=</span> <span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">areSimilar</span><span class="token punctuation">(</span><span class="token string">'path/to/first/image'</span><span class="token punctuation">,</span><span class="token string">'path/to/second/image'</span><span class="token punctuation">,</span><span class="token number">0.05</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//allow max 5% difference</span></code></pre>
+                                    </div>
+
+                                </section>
+
+
+                            <section id="sample-section-01" class="doc-section">
+                                <h3 class="section-title">Basic Example 2 - Duplicates and Uniques in directory</h3>
+
+                                <div class="section-block">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <small>Move slider to change enough percentage. Using default Metric MAE ( Mean Absolute Error ) <a href="https://php-image-comparer.axl.pl/#ComparatorImageMagick-settings">more on available metrics.</a></small><br><br>
+                                            <span class="irs js-irs-0  irs-with-grid"><span class="irs"><span class="irs-line" tabindex="0"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span><span class="irs-min" style="visibility: visible;">0%</span><span class="irs-max" style="visibility: visible;">25%</span><span class="irs-from" style="visibility: hidden;">0</span><span class="irs-to" style="visibility: hidden;">0</span><span class="irs-single" style="left: 38.4725%;">10%</span></span><span class="irs-grid" style="width: 98.7912%; left: 0.504396%;"><span class="irs-grid-pol" style="left: 0%"></span><span class="irs-grid-text js-grid-text-0" style="left: 0%; margin-left: -0.604396%;">0</span><span class="irs-grid-pol small" style="left: 20%"></span><span class="irs-grid-pol small" style="left: 15%"></span><span class="irs-grid-pol small" style="left: 10%"></span><span class="irs-grid-pol small" style="left: 5%"></span><span class="irs-grid-pol" style="left: 25%"></span><span class="irs-grid-text js-grid-text-1" style="left: 25%; visibility: visible; margin-left: -0.604396%;">6</span><span class="irs-grid-pol small" style="left: 45%"></span><span class="irs-grid-pol small" style="left: 40%"></span><span class="irs-grid-pol small" style="left: 35%"></span><span class="irs-grid-pol small" style="left: 30%"></span><span class="irs-grid-pol" style="left: 50%"></span><span class="irs-grid-text js-grid-text-2" style="left: 50%; visibility: visible; margin-left: -0.879121%;">13</span><span class="irs-grid-pol small" style="left: 70%"></span><span class="irs-grid-pol small" style="left: 65%"></span><span class="irs-grid-pol small" style="left: 60%"></span><span class="irs-grid-pol small" style="left: 55%"></span><span class="irs-grid-pol" style="left: 75%"></span><span class="irs-grid-text js-grid-text-3" style="left: 75%; visibility: visible; margin-left: -0.879121%;">19</span><span class="irs-grid-pol small" style="left: 95%"></span><span class="irs-grid-pol small" style="left: 90%"></span><span class="irs-grid-pol small" style="left: 85%"></span><span class="irs-grid-pol small" style="left: 80%"></span><span class="irs-grid-pol" style="left: 100%"></span><span class="irs-grid-text js-grid-text-4" style="left: 100%; margin-left: -0.879121%;">25</span></span><span class="irs-bar" style="left: 0.604396%; width: 39.5165%;"></span><span class="irs-bar-edge"></span><span class="irs-shadow shadow-single" style="display: none;"></span><span class="irs-slider single" style="left: 39.5165%;"></span></span><input type="text" id="sample-section-01-input" name="sample-section-01-input" value="" class="irs-hidden-input" tabindex="-1" readonly="">
+                                        </div>
+                                    </div>
+                                    <div class="row" id="sample-section-01-body">    <div class="col-sm-12"><h4>Input</h4></div>
+    <div class="col-sm-12">
+        <img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/1.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/4.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/7.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/8.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/2.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/5.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/6.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/3.jpg">    </div>
+    <div class="col-sm-6"><i class="fa fa-arrow-down"></i> <h6>DUPLICATES [output]</h6>
+        <img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/1.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/2.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/3.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/4.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/6.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/7.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/8.jpg">    </div>
+
+    <div class="col-sm-6"><i class="fa fa-arrow-down"></i> <h6>UNIQUES [output]</h6>
+        <img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/1.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/3.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/5.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/7.jpg">    </div>
+
+
+</div>
+                                </div>
+                                <div class="code-block">
+                                    <h6>Code</h6>
+<pre class=" language-php"><code class=" language-php"><span class="token keyword">require_once</span> <span class="token string">'vendor/autoload.php'</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>Utils</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>FastImageCompare</span><span class="token punctuation">;</span>
+
+<span class="token variable">$instance</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FastImageCompare</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$percentage</span> <span class="token operator">=</span> <span class="token number">0.10</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 100% = 1.0 , 10% = 0.1 , 1% = 0.01</span>
+
+<span class="token variable">$input</span> <span class="token operator">=</span> Utils<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">getFilesIn</span><span class="token punctuation">(</span><span class="token string">'/absolute/path/to/directory/with/images/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//find duplicates/similar</span>
+<span class="token variable">$duplicates</span> <span class="token operator">=</span> <span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">findDuplicates</span><span class="token punctuation">(</span><span class="token variable">$input</span><span class="token punctuation">,</span><span class="token variable">$percentage</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//find unique images</span>
+<span class="token variable">$uniques</span> <span class="token operator">=</span> <span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">findUniques</span><span class="token punctuation">(</span><span class="token variable">$input</span><span class="token punctuation">,</span><span class="token variable">$percentage</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                </div>
+                            </section>
+
+                            <section id="sample-section-02" class="doc-section">
+                                <h3 class="section-title">Example 3 - Multiple normalizers, 32px sample size + grayscale and RMSE metric</h3>
+
+                                <div class="section-block">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <small>Move slider to change enough percentage. Using Metric RMSE  <a href="https://php-image-comparer.axl.pl/#metrics-section">more on available metrics.</a> and two normalizers</small><br><br>
+                                            <span class="irs js-irs-1  irs-with-grid"><span class="irs"><span class="irs-line" tabindex="0"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span><span class="irs-min" style="visibility: visible;">0%</span><span class="irs-max" style="visibility: visible;">25%</span><span class="irs-from" style="visibility: hidden;">0</span><span class="irs-to" style="visibility: hidden;">0</span><span class="irs-single" style="left: 38.4725%;">10%</span></span><span class="irs-grid" style="width: 98.7912%; left: 0.504396%;"><span class="irs-grid-pol" style="left: 0%"></span><span class="irs-grid-text js-grid-text-0" style="left: 0%; margin-left: -0.604396%;">0</span><span class="irs-grid-pol small" style="left: 20%"></span><span class="irs-grid-pol small" style="left: 15%"></span><span class="irs-grid-pol small" style="left: 10%"></span><span class="irs-grid-pol small" style="left: 5%"></span><span class="irs-grid-pol" style="left: 25%"></span><span class="irs-grid-text js-grid-text-1" style="left: 25%; visibility: visible; margin-left: -0.604396%;">6</span><span class="irs-grid-pol small" style="left: 45%"></span><span class="irs-grid-pol small" style="left: 40%"></span><span class="irs-grid-pol small" style="left: 35%"></span><span class="irs-grid-pol small" style="left: 30%"></span><span class="irs-grid-pol" style="left: 50%"></span><span class="irs-grid-text js-grid-text-2" style="left: 50%; visibility: visible; margin-left: -0.879121%;">13</span><span class="irs-grid-pol small" style="left: 70%"></span><span class="irs-grid-pol small" style="left: 65%"></span><span class="irs-grid-pol small" style="left: 60%"></span><span class="irs-grid-pol small" style="left: 55%"></span><span class="irs-grid-pol" style="left: 75%"></span><span class="irs-grid-text js-grid-text-3" style="left: 75%; visibility: visible; margin-left: -0.879121%;">19</span><span class="irs-grid-pol small" style="left: 95%"></span><span class="irs-grid-pol small" style="left: 90%"></span><span class="irs-grid-pol small" style="left: 85%"></span><span class="irs-grid-pol small" style="left: 80%"></span><span class="irs-grid-pol" style="left: 100%"></span><span class="irs-grid-text js-grid-text-4" style="left: 100%; margin-left: -0.879121%;">25</span></span><span class="irs-bar" style="left: 0.604396%; width: 39.5165%;"></span><span class="irs-bar-edge"></span><span class="irs-shadow shadow-single" style="display: none;"></span><span class="irs-slider single" style="left: 39.5165%;"></span></span><input type="text" id="sample-section-02-input" name="sample-section-02-input" value="" class="irs-hidden-input" tabindex="-1" readonly="">
+                                        </div>
+                                    </div>
+                                    <div class="row" id="sample-section-02-body">    <div class="col-sm-12"><h4>Input</h4></div>
+    <div class="col-sm-12">
+        <img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/21.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/12.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/20.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/11.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/26.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/14.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/15.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/25.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/19.jpg"><img class="img-responsive img-thumbnail" style="height:60px;margin:0px 5px 5px 0px;" src="./docs_files/24.jpg">    </div>
+    <div class="col-sm-6"><i class="fa fa-arrow-down"></i> <h6>DUPLICATES [output]</h6>
+        <img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/14.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/15.jpg">    </div>
+
+    <div class="col-sm-6"><i class="fa fa-arrow-down"></i> <h6>UNIQUES [output]</h6>
+        <img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/11.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/12.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/14.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/19.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/20.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/21.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/24.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/25.jpg"><img class="img-responsive img-thumbnail" style="height:100px;margin:0px 5px 5px 0px;" src="./docs_files/26.jpg">    </div>
+
+
+</div>
+                                </div>
+                                <div class="code-block">
+                                    <h6>Code</h6>
+                                    <pre class=" language-php"><code class=" language-php"><span class="token keyword">require_once</span> <span class="token string">'vendor/autoload.php'</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>FastImageCompare</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>ComparatorImageMagick</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">pepeEpe<span class="token punctuation">\</span>FastImageCompare<span class="token punctuation">\</span>NormalizerGrayScale</span><span class="token punctuation">;</span>
+
+<span class="token variable">$instance</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FastImageCompare</span><span class="token punctuation">(</span><span class="token string">'tmpdir'</span><span class="token punctuation">,</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$percentage</span> <span class="token operator">=</span> <span class="token number">0.10</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 100% = 1.0 , 10% = 0.1 , 1% = 0.01</span>
+
+<span class="token variable">$input</span> <span class="token operator">=</span> Utils<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">getFilesIn</span><span class="token punctuation">(</span><span class="token string">'/absolute/path/to/directory/with/images/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//create comparator without normalizers</span>
+<span class="token variable">$comparatorImagick</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ComparatorImageMagick</span><span class="token punctuation">(</span>ComparatorImageMagick<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">METRIC_RMSE</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//register normalizer squared size with 32px</span>
+<span class="token variable">$comparatorImagick</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">registerNormalizer</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">NormalizerSquaredSize</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//register normalizer grayscale</span>
+<span class="token variable">$comparatorImagick</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">registerNormalizer</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">NormalizerGrayScale</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//register comparator with attached normalizers</span>
+<span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">registerComparator</span><span class="token punctuation">(</span><span class="token variable">$comparatorImagick</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//find duplicates/similar</span>
+<span class="token variable">$duplicates</span> <span class="token operator">=</span> <span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">findDuplicates</span><span class="token punctuation">(</span><span class="token variable">$input</span><span class="token punctuation">,</span><span class="token variable">$percentage</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//find unique images</span>
+<span class="token variable">$uniques</span> <span class="token operator">=</span> <span class="token variable">$instance</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">findUniques</span><span class="token punctuation">(</span><span class="token variable">$input</span><span class="token punctuation">,</span><span class="token variable">$percentage</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+                                </div>
+                            </section>
+
+
+                                                        <section id="links-section" class="doc-section">
+                                                            <h3 class="section-title">Links</h3>
+                                                            <div class="section-block">
+
+                                                                <ul class="list">
+                                                                    <li><a href="http://www.imagemagick.org/" target="_blank">http://www.imagemagick.org/</a> </li>
+                                                                    <li><a href="http://www.imagemagick.org/discourse-server/viewforum.php?f=14" target="_blank">Image Magick Forums</a> </li>
+                                                                    <li><a href="https://stackoverflow.com/questions/tagged/imagemagick" target="_blank">SO tagged imagemagick</a> </li>
+                                                                    <li><a href="http://www.fmwconcepts.com/imagemagick/index.php" target="_blank">Fred's ImageMagick Scripts</a> </li>
+                                                                    <li><a href="http://www.phpimagick.com/" target="_blank">http://www.phpimagick.com/</a> </li>
+                                                                </ul>
+                                                            </div>
+                                                        </section>
+
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                    <div class="doc-sidebar hidden-xs">
+                        <nav id="doc-nav">
+                            <ul id="doc-menu" class="nav doc-menu affix-top" data-spy="affix">
+<!--                                <li><a class="scrollto" href="#download-section">Download</a></li>-->
+                                <li class=""><a class="scrollto" href="https://php-image-comparer.axl.pl/#requirements-section">Requirements</a></li>
+                                <li class="">
+                                    <a class="scrollto" href="https://php-image-comparer.axl.pl/#installation-section">Installation</a>
+<!--                                    <ul class="nav doc-sub-menu">-->
+<!--                                        <li><a class="scrollto" href="#step1">Requirements</a></li>-->
+<!--                                        <li><a class="scrollto" href="#step2">Step Two</a></li>-->
+<!--                                        <li><a class="scrollto" href="#step3">Step Three</a></li>-->
+<!--                                    </ul><!--//nav-->
+                                </li>
+                                <li class="">
+                                    <a class="scrollto" href="https://php-image-comparer.axl.pl/#methods-section">Methods</a></li>
+                                <li class="">
+                                    <a class="scrollto" href="https://php-image-comparer.axl.pl/#usage-section">Usage</a>
+                                    <ul class="nav doc-sub-menu">
+                                        <li class=""><a class="scrollto" href="https://php-image-comparer.axl.pl/#usage-basic">Basic</a></li>
+                                        <li class=""><a class="scrollto" href="https://php-image-comparer.axl.pl/#usage-preffered-picks">Preffered picks</a></li>
+<!--                                        <li><a class="scrollto" href="#usage-advanced">Advanced</a></li>-->
+                                        <li class=""><a class="scrollto" href="https://php-image-comparer.axl.pl/#usage-classifiers">Classifiers</a></li>
+                                        <li class=""><a class="scrollto" href="https://php-image-comparer.axl.pl/#usage-normalizers">Normalizers</a></li>
+                                        <li class=""><a class="scrollto" href="https://php-image-comparer.axl.pl/#usage-comparators">Comparators</a></li>
+                                        <li class=""><a class="scrollto" href="https://php-image-comparer.axl.pl/#usage-cache">Caching and temp directory</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="">
+                                    <a class="scrollto" href="https://php-image-comparer.axl.pl/#examples-section">Examples</a>
+                                    <ul class="nav doc-sub-menu">
+                                        <li class=""><a class="scrollto" href="https://php-image-comparer.axl.pl/#sample-section-00">Comparing two files</a></li>
+                                        <li class=""><a class="scrollto" href="https://php-image-comparer.axl.pl/#sample-section-01">Basic duplicates &amp; uniques</a></li>
+                                        <li class=""><a class="scrollto" href="https://php-image-comparer.axl.pl/#sample-section-02" style="">Multiple normalizers</a></li>
+                                    </ul><!--//nav-->
+                                </li>
+<!--                                <li><a class="scrollto" href="#metrics-section">Metrics</a>-->
+<!--                                    <ul class="nav doc-sub-menu">-->
+<!--                                        <li><a class="scrollto" href="#metric-ae">AE</a></li>-->
+<!--                                        <li><a class="scrollto" href="#metric-mae">MAE</a></li>-->
+<!--                                        <li><a class="scrollto" href="#metric-ncc">NCC</a></li>-->
+<!--                                        <li><a class="scrollto" href="#metric-mse">MSE</a></li>-->
+<!--                                        <li><a class="scrollto" href="#metric-rmse">RMSE</a></li>-->
+<!--                                    </ul>-->
+<!--                                </li>-->
+<!--                                <li><a class="scrollto" href="#callouts-section">Callouts</a></li>-->
+<!--                                <li><a class="scrollto" href="#tables-section">Tables</a></li>-->
+<!--                                <li><a class="scrollto" href="#buttons-section">Buttons</a></li>-->
+<!--                                <li><a class="scrollto" href="#video-section">Video</a></li>-->
+                                <li class=""><a class="scrollto" href="https://php-image-comparer.axl.pl/#links-section" style="">Links</a></li>
+                            </ul><!--//doc-menu-->
+                        </nav>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+            </div><!--//page-wrapper-->
+    
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Documentation template designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com/" targe="_blank">Xiaoying Riley</a> for developers</small>
+            
+        </div><!--//container-->
+    </footer><!--//footer-->
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="./docs_files/jquery-1.12.3.min.js.download"></script>
+    <script type="text/javascript" src="./docs_files/bootstrap.min.js.download"></script>
+    <script type="text/javascript" src="./docs_files/prism.js.download"></script>    
+    <script type="text/javascript" src="./docs_files/jquery.scrollTo.min.js.download"></script>                                                                
+    <script type="text/javascript" src="./docs_files/jquery.matchHeight-min.js.download"></script>
+    <script type="text/javascript" src="./docs_files/ion.rangeSlider.min.js.download"></script>
+    <script type="text/javascript" src="./docs_files/main.js.download"></script>
+    
+</html>

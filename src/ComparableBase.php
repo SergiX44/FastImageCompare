@@ -1,6 +1,6 @@
 <?php
 
-namespace pepeEpe\FastImageCompare;
+namespace SergiX44\FastImageCompare;
 
 
 abstract class ComparableBase implements IComparable
@@ -41,7 +41,7 @@ abstract class ComparableBase implements IComparable
     }
 
     /**
-     * @param int $comparableMode
+     * @param  int  $comparableMode
      */
     public function setComparableMode($comparableMode)
     {
@@ -51,7 +51,7 @@ abstract class ComparableBase implements IComparable
 
     /**
      * Register new Normalizer
-     * @param INormalizable $normalizerInstance
+     * @param  INormalizable  $normalizerInstance
      */
     public function registerNormalizer(INormalizable $normalizerInstance)
     {
@@ -59,7 +59,7 @@ abstract class ComparableBase implements IComparable
     }
 
     /**
-     * @param INormalizable[] $normalizerInstances
+     * @param  INormalizable[]  $normalizerInstances
      */
     public function setNormalizers(array $normalizerInstances)
     {
@@ -82,37 +82,36 @@ abstract class ComparableBase implements IComparable
         $this->setNormalizers([]);
     }
 
-    final public function difference($inputLeft,$inputRight,$enoughDifference,FastImageCompare $instance)
+    final public function difference($inputLeft, $inputRight, $enoughDifference, FastImageCompare $instance)
     {
-        $normalizedLeft     = $this->normalize($inputLeft,$instance->getTemporaryDirectory());
-        $normalizedRight    = $this->normalize($inputRight,$instance->getTemporaryDirectory());
+        $normalizedLeft = $this->normalize($inputLeft, $instance->getTemporaryDirectory());
+        $normalizedRight = $this->normalize($inputRight, $instance->getTemporaryDirectory());
 
-        $cacheKey = $this->getShortClassName().'-'.$this->generateCacheKey($normalizedLeft,$normalizedRight);
-        $cacheKey.='-'.md5($normalizedLeft).'-vs-'.md5($normalizedRight);
+        $cacheKey = $this->getShortClassName().'-'.$this->generateCacheKey($normalizedLeft, $normalizedRight);
+        $cacheKey .= '-'.md5($normalizedLeft).'-vs-'.md5($normalizedRight);
 
         if (!is_null($instance->getCacheAdapter())) {
             $item = $instance->getCacheAdapter()->getItem($cacheKey);
             if ($item->isHit()) {
-                $result = $item->get();
-                return $result;
-            } else {
-                $result = $this->calculateDifference($normalizedLeft, $normalizedRight, $inputLeft, $inputRight, $enoughDifference, $instance);
-                $item->set($result);
-                $instance->getCacheAdapter()->save($item);
-                return $result;
+                return $item->get();
             }
-        } else {
-            return $this->calculateDifference($normalizedLeft, $normalizedRight, $inputLeft, $inputRight, $enoughDifference, $instance);
+
+            $result = $this->calculateDifference($normalizedLeft, $normalizedRight, $inputLeft, $inputRight, $enoughDifference, $instance);
+            $item->set($result);
+            $instance->getCacheAdapter()->save($item);
+            return $result;
         }
+
+        return $this->calculateDifference($normalizedLeft, $normalizedRight, $inputLeft, $inputRight, $enoughDifference, $instance);
     }
 
-    private function normalize($input,$tempDir)
+    private function normalize($input, $tempDir)
     {
-        foreach ($this->getNormalizers() as $normalizer){
+        foreach ($this->getNormalizers() as $normalizer) {
             if (file_exists($input)) {
-                $cacheFileName = $normalizer->getCachedFile($input,$tempDir);
+                $cacheFileName = $normalizer->getCachedFile($input, $tempDir);
                 if (!file_exists($cacheFileName)) {
-                    $input = $normalizer->normalize($input,$cacheFileName,$tempDir);
+                    $input = $normalizer->normalize($input, $cacheFileName, $tempDir);
                 } else {
                     $input = $cacheFileName;
                 }

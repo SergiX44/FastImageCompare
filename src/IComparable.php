@@ -1,17 +1,11 @@
 <?php
-/**
- * (c) Paweł Plewa <pawel.plewa@gmail.com> 2018
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- *
- */
 
-namespace pepeEpe\FastImageCompare;
+namespace SergiX44\FastImageCompare;
 
-interface IComparable {
+interface IComparable
+{
 
-    const STRICT     = 0;
+    const STRICT = 0;
     const PASSTHROUGH = 1;
 
     /**
@@ -32,7 +26,7 @@ interface IComparable {
      * @param $instance FastImageCompare
      * @return float
      */
-    public function difference($inputLeft,$inputRight,$enoughDifference,FastImageCompare $instance);
+    public function difference($inputLeft, $inputRight, $enoughDifference, FastImageCompare $instance);
 
 
     /**
@@ -41,7 +35,7 @@ interface IComparable {
     public function getComparableMode();
 
     /**
-     * @param int $comparableMode
+     * @param  int  $comparableMode
      */
     public function setComparableMode($comparableMode);
 
@@ -49,7 +43,7 @@ interface IComparable {
     public function registerNormalizer(INormalizable $normalizerInstance);
 
     /**
-     * @param INormalizable[] $normalizerInstances
+     * @param  INormalizable[]  $normalizerInstances
      */
     public function setNormalizers(array $normalizerInstances);
 
@@ -64,6 +58,6 @@ interface IComparable {
     public function clearNormalizers();
 
 
-    public function generateCacheKey($imageLeft,$imageRight);
+    public function generateCacheKey($imageLeft, $imageRight);
 
 }

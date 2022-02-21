@@ -1,6 +1,9 @@
 <?php
 
-namespace pepeEpe\FastImageCompare;
+namespace SergiX44\FastImageCompare;
+
+use Exception;
+use imagick;
 
 class ClassifierColor extends ClassificableBase
 {
@@ -31,48 +34,57 @@ class ClassifierColor extends ClassificableBase
         $isGrayScale = true;
         try {
             // Max colors to scan
-            $ff = new \imagick($inputFile);
+            $ff = new imagick($inputFile);
             $count = [];
             $uniqueColors = 0;
             for ($x = 0; $x < $ff->getImageWidth(); $x += $this->precision) {
                 for ($y = 0; $y < $ff->getImageHeight(); $y += $this->precision) {
                     $color = $ff->getImagePixelColor($x, $y)->getColor();
-                    $key = $color['r'] . '-' . $color['g'] . '-' . $color['b'];
-                    if ($isGrayScale)
-                        if ($color['r'] != $color['g'] && $color['g'] != $color['b']) $isGrayScale = false;
+                    $key = $color['r'].'-'.$color['g'].'-'.$color['b'];
+                    if ($isGrayScale) {
+                        if ($color['r'] != $color['g'] && $color['g'] != $color['b']) {
+                            $isGrayScale = false;
+                        }
+                    }
 
                     $count[$key]++;
                     $uniqueColors = count(array_keys($count));
-                    if ($uniqueColors >= self::MAX_COLORS_TO_SCAN + 1) break 2;
+                    if ($uniqueColors >= self::MAX_COLORS_TO_SCAN + 1) {
+                        break 2;
+                    }
                 }
             }
             $ff->clear();
             unset($ff);
-            if ($uniqueColors <= 16)
+            if ($uniqueColors <= 16) {
                 return [
                     self::C_COUNT_BELOW_16,
-                    $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR
+                    $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR,
                 ];
-            if ($uniqueColors <= 64)
+            }
+            if ($uniqueColors <= 64) {
                 return [
                     self::C_COUNT_BELOW_64,
-                    $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR
+                    $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR,
                 ];
-            if ($uniqueColors <= 128)
+            }
+            if ($uniqueColors <= 128) {
                 return [
                     self::C_COUNT_BELOW_128,
-                    $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR
+                    $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR,
                 ];
-            if ($uniqueColors <= 256)
+            }
+            if ($uniqueColors <= 256) {
                 return [
                     self::C_COUNT_BELOW_256,
-                    $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR
+                    $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR,
                 ];
+            }
             return [
                 self::C_COUNT_ABOVE_256,
-                $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR
+                $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR,
             ];
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
         }
         return [];
@@ -84,7 +96,7 @@ class ClassifierColor extends ClassificableBase
      */
     public function generateCacheKey($imagePath)
     {
-        return implode('-', array(self::MAX_COLORS_TO_SCAN, $this->precision));
+        return implode('-', [self::MAX_COLORS_TO_SCAN, $this->precision]);
     }
 
 
