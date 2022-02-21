@@ -11,7 +11,7 @@ class Utils
 {
     /**
      * @param $path
-     * @param null $notLastModifiedSecondsAgo
+     * @param  null  $notLastModifiedSecondsAgo
      *
      * @return array
      */
@@ -61,5 +61,24 @@ class Utils
         foreach ($filesArray as $file) {
             @unlink($file);
         }
+    }
+
+    /**
+     * @param $path
+     * @return array
+     */
+    public static function getFilesIn($path): array
+    {
+        $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
+        $files = [];
+        /**
+         * @var $file SplFileInfo
+         */
+        foreach ($rii as $file) {
+            if (!$file->isDir()) {
+                $files[] = $file->getPathname();
+            }
+        }
+        return array_unique($files);
     }
 }
