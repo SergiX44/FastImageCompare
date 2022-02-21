@@ -5,7 +5,6 @@ use SergiX44\FastImageCompare\FastImageCompare;
 
 class FastImageCompareTest extends TestCase
 {
-
     public function testGetImageSize()
     {
         $ff = new FastImageCompare();
@@ -36,5 +35,4 @@ class FastImageCompareTest extends TestCase
         $result = $ff->areDifferent($files[0], $files[1]);
         $this->assertTrue($result);
     }
-
 }

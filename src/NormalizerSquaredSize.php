@@ -2,7 +2,6 @@
 
 namespace SergiX44\FastImageCompare;
 
-
 use Exception;
 use Gumlet\ImageResize;
 
@@ -27,12 +26,13 @@ class NormalizerSquaredSize extends NormalizableBase
             $imageResize->resize($this->getSampleSize(), $this->getSampleSize(), true);
             $imageResize->save($output, IMAGETYPE_PNG);
             unset($imageResize);
+
             return $output;
         } catch (Exception $e) {
             copy($inputImagePath, $output);
+
             return $output;
         }
-
     }
 
     public function getCacheKey($imagePath)
@@ -49,11 +49,10 @@ class NormalizerSquaredSize extends NormalizableBase
     }
 
     /**
-     * @param  int  $sampleSize
+     * @param int $sampleSize
      */
     public function setSampleSize($sampleSize)
     {
         $this->sampleSize = $sampleSize;
     }
-
 }

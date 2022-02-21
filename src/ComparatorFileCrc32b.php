@@ -5,10 +5,7 @@ namespace SergiX44\FastImageCompare;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 
 /**
- * Class ComparatorCrc32b
- * @package pepeEpe\FastImageCompare
- *
- * Compares crc32b of two files, return 1.0 or 0.0 ( 100% diff when not equal or 0% diff when equal )
+ * Class ComparatorCrc32b.
  */
 class ComparatorFileCrc32b extends ComparableBase
 {
@@ -19,6 +16,7 @@ class ComparatorFileCrc32b extends ComparableBase
      * @param $imageRightOriginal string
      * @param $enoughDifference float
      * @param $instance FastImageCompare
+     *
      * @return float percentage difference in range 0..1
      */
     public function calculateDifference($imageLeftNormalized, $imageRightNormalized, $imageLeftOriginal, $imageRightOriginal, $enoughDifference, FastImageCompare $instance)
@@ -31,9 +29,11 @@ class ComparatorFileCrc32b extends ComparableBase
 
     /**
      * @param $filePath
-     * @param  AdapterInterface  $cacheAdapter
-     * @return string
+     * @param AdapterInterface $cacheAdapter
+     *
      * @throws \Psr\Cache\InvalidArgumentException
+     *
+     * @return string
      */
     private function cachedHash($filePath, $cacheAdapter)
     {
@@ -46,6 +46,7 @@ class ComparatorFileCrc32b extends ComparableBase
         $result = hash('crc32b', file_get_contents($filePath));
         $item->set($result);
         $cacheAdapter->save($item);
+
         return $result;
     }
 
@@ -53,5 +54,4 @@ class ComparatorFileCrc32b extends ComparableBase
     {
         return '';
     }
-
 }

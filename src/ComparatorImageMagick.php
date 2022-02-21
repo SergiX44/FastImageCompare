@@ -6,34 +6,34 @@ use Imagick;
 
 class ComparatorImageMagick extends ComparableBase
 {
-
     /**
-     * Absolute Error count of the number of different pixels (0=equal)
+     * Absolute Error count of the number of different pixels (0=equal).
      */
     const METRIC_AE = -1;
 
     /**
-     * Mean absolute error    (average channel error distance)
+     * Mean absolute error    (average channel error distance).
      */
     const METRIC_MAE = -2;
 
     /**
-     * Mean squared error     (averaged squared error distance)
+     * Mean squared error     (averaged squared error distance).
      */
     const METRIC_MSE = -3;
 
     /**
-     * (sq)root mean squared error -- IE:  sqrt(MSE)
+     * (sq)root mean squared error -- IE:  sqrt(MSE).
      */
     const METRIC_RMSE = -4;
 
     /**
-     * normalized cross correlation (1 = similar)
+     * normalized cross correlation (1 = similar).
      */
     const METRIC_NCC = -5;
 
     /**
      * @see \Imagick::METRIC_* constants
+     *
      * @var int
      */
     private $metric;
@@ -44,9 +44,10 @@ class ComparatorImageMagick extends ComparableBase
     private $ignoreAlpha = false;
 
     /**
-     * Creates a ImageMagick comparator instance with default metric METRIC_MAE
-     * @param  int  $metric
-     * @param  INormalizable[]  $normalizers
+     * Creates a ImageMagick comparator instance with default metric METRIC_MAE.
+     *
+     * @param int             $metric
+     * @param INormalizable[] $normalizers
      * @param $ignoreAlpha bool
      */
     public function __construct($metric = self::METRIC_MAE, $normalizers = null, $ignoreAlpha = false)
@@ -62,7 +63,6 @@ class ComparatorImageMagick extends ComparableBase
         } elseif ($normalizers instanceof INormalizable) {
             $this->registerNormalizer($normalizers);
         }
-
     }
 
     /**
@@ -72,8 +72,10 @@ class ComparatorImageMagick extends ComparableBase
      * @param $imageRightOriginal string
      * @param $enoughDifference float
      * @param $instance FastImageCompare
-     * @return float percentage difference in range 0..1
+     *
      * @throws \ImagickException
+     *
+     * @return float percentage difference in range 0..1
      */
     public function calculateDifference($imageLeftNormalized, $imageRightNormalized, $imageLeftOriginal, $imageRightOriginal, $enoughDifference, FastImageCompare $instance)
     {
@@ -87,7 +89,6 @@ class ComparatorImageMagick extends ComparableBase
         $imageInstanceLeft->readImage($imageLeftNormalized);
         $imageInstanceRight->readImage($imageRightNormalized);
 
-
         if ($this->isIgnoreAlpha()) {
             $imageInstanceLeft->setImageBackgroundColor('#FFFFFF');
             $imageInstanceLeft = $imageInstanceLeft->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
@@ -95,7 +96,6 @@ class ComparatorImageMagick extends ComparableBase
             $imageInstanceRight->setImageBackgroundColor('#FFFFFF');
             $imageInstanceRight = $imageInstanceRight->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
         }
-
 
         $difference = $imageInstanceLeft->compareImages($imageInstanceRight, $this->localMetricToImagickMetric($this->getMetric()))[1];
 
@@ -110,9 +110,9 @@ class ComparatorImageMagick extends ComparableBase
         $imageInstanceLeft->clear();
         $imageInstanceRight->clear();
         unset($imageInstanceLeft, $imageInstanceRight);
+
         return $difference;
     }
-
 
     /**
      * @return int
@@ -123,7 +123,8 @@ class ComparatorImageMagick extends ComparableBase
     }
 
     /**
-     * @param  int  $metric
+     * @param int $metric
+     *
      * @see \Imagick::METRIC_*
      */
     public function setMetric($metric)
@@ -134,11 +135,11 @@ class ComparatorImageMagick extends ComparableBase
     private function localMetricToImagickMetric($metric)
     {
         return match ($metric) {
-            self::METRIC_AE => Imagick::METRIC_ABSOLUTEERRORMETRIC,
-            self::METRIC_MSE => Imagick::METRIC_MEANSQUAREERROR,
+            self::METRIC_AE   => Imagick::METRIC_ABSOLUTEERRORMETRIC,
+            self::METRIC_MSE  => Imagick::METRIC_MEANSQUAREERROR,
             self::METRIC_RMSE => Imagick::METRIC_ROOTMEANSQUAREDERROR,
-            self::METRIC_NCC => Imagick::METRIC_NORMALIZEDCROSSCORRELATIONERRORMETRIC,
-            default => Imagick::METRIC_MEANABSOLUTEERROR,
+            self::METRIC_NCC  => Imagick::METRIC_NORMALIZEDCROSSCORRELATIONERRORMETRIC,
+            default           => Imagick::METRIC_MEANABSOLUTEERROR,
         };
     }
 
@@ -151,7 +152,7 @@ class ComparatorImageMagick extends ComparableBase
     }
 
     /**
-     * @param  bool  $ignoreAlpha
+     * @param bool $ignoreAlpha
      */
     public function setIgnoreAlpha($ignoreAlpha)
     {
@@ -162,5 +163,4 @@ class ComparatorImageMagick extends ComparableBase
     {
         return implode('-', [$this->getMetric(), $this->isIgnoreAlpha() ? 'ia' : 'iaOff']);
     }
-
 }

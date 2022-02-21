@@ -7,7 +7,6 @@ use imagick;
 
 class ClassifierColor extends ClassificableBase
 {
-
     const MAX_COLORS_TO_SCAN = 256;
     /**
      * @var int
@@ -26,12 +25,14 @@ class ClassifierColor extends ClassificableBase
     /**
      * @param $inputFile
      * @param $instance FastImageCompare
+     *
      * @return string[]
      */
     protected function internalClassify($inputFile, FastImageCompare $instance)
     {
         //assume it is grayscale
         $isGrayScale = true;
+
         try {
             // Max colors to scan
             $ff = new imagick($inputFile);
@@ -80,24 +81,24 @@ class ClassifierColor extends ClassificableBase
                     $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR,
                 ];
             }
+
             return [
                 self::C_COUNT_ABOVE_256,
                 $isGrayScale ? self::COLORS_GRAYSCALE : self::COLORS_COLOR,
             ];
         } catch (Exception $e) {
-
         }
+
         return [];
     }
 
     /**
      * @param $imagePath
+     *
      * @return string
      */
     public function generateCacheKey($imagePath)
     {
         return implode('-', [self::MAX_COLORS_TO_SCAN, $this->precision]);
     }
-
-
 }

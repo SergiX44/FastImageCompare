@@ -9,10 +9,10 @@ use SplFileInfo;
 
 class Utils
 {
-
     /**
      * @param $path
-     * @param  null  $notLastModifiedSecondsAgo
+     * @param null $notLastModifiedSecondsAgo
+     *
      * @return array
      */
     public static function getFilesOlderBy($path, $notLastModifiedSecondsAgo = null)
@@ -34,11 +34,13 @@ class Utils
                 }
             }
         }
+
         return array_unique($files);
     }
 
     /**
      * @param $classOrObject
+     *
      * @return string
      */
     public static function getClassNameWithoutNamespace($classOrObject)
@@ -47,6 +49,7 @@ class Utils
             $classOrObject = get_class($classOrObject);
         }
         $path = explode('\\', ($classOrObject));
+
         return array_pop($path);
     }
 
