@@ -2,12 +2,10 @@
 
 namespace SergiX44\FastImageCompare;
 
-
 use RuntimeException;
 
 abstract class NormalizableBase implements INormalizable
 {
-
     protected $ensuredCacheDirExists;
 
     /**
@@ -30,6 +28,7 @@ abstract class NormalizableBase implements INormalizable
 
     /**
      * @param $filePath
+     *
      * @return string
      */
     private function buildCachePath($filePath)
@@ -40,6 +39,7 @@ abstract class NormalizableBase implements INormalizable
     /**
      * @param $filePath
      * @param $temporaryDirectory
+     *
      * @return string
      */
     public function getCachedFile($filePath, $temporaryDirectory)
@@ -51,7 +51,7 @@ abstract class NormalizableBase implements INormalizable
                 throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
             }
         }
+
         return $dest.'-'.basename($filePath);
     }
-
 }

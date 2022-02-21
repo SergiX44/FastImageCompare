@@ -2,17 +2,14 @@
 
 namespace SergiX44\FastImageCompare;
 
-
 abstract class ComparableBase implements IComparable
 {
-
     private $comparableMode = IComparable::PASSTHROUGH;
 
     /**
      * @var INormalizable[]
      */
     private $registeredNormalizers = [];
-
 
     /**
      * @var string
@@ -41,17 +38,17 @@ abstract class ComparableBase implements IComparable
     }
 
     /**
-     * @param  int  $comparableMode
+     * @param int $comparableMode
      */
     public function setComparableMode($comparableMode)
     {
         $this->comparableMode = $comparableMode;
     }
 
-
     /**
-     * Register new Normalizer
-     * @param  INormalizable  $normalizerInstance
+     * Register new Normalizer.
+     *
+     * @param INormalizable $normalizerInstance
      */
     public function registerNormalizer(INormalizable $normalizerInstance)
     {
@@ -59,7 +56,7 @@ abstract class ComparableBase implements IComparable
     }
 
     /**
-     * @param  INormalizable[]  $normalizerInstances
+     * @param INormalizable[] $normalizerInstances
      */
     public function setNormalizers(array $normalizerInstances)
     {
@@ -75,7 +72,7 @@ abstract class ComparableBase implements IComparable
     }
 
     /**
-     * Clear normalizers
+     * Clear normalizers.
      */
     public function clearNormalizers()
     {
@@ -99,6 +96,7 @@ abstract class ComparableBase implements IComparable
             $result = $this->calculateDifference($normalizedLeft, $normalizedRight, $inputLeft, $inputRight, $enoughDifference, $instance);
             $item->set($result);
             $instance->getCacheAdapter()->save($item);
+
             return $result;
         }
 
@@ -117,7 +115,7 @@ abstract class ComparableBase implements IComparable
                 }
             }
         }
+
         return $input;
     }
-
 }

@@ -10,8 +10,10 @@ class NormalizerHistogram extends NormalizableBase
      * @param $inputImagePath
      * @param $output
      * @param $tempDir
-     * @return string path
+     *
      * @throws \ImagickException
+     *
+     * @return string path
      */
     public function normalize($inputImagePath, $output, $tempDir)
     {
@@ -21,16 +23,17 @@ class NormalizerHistogram extends NormalizableBase
         $imageInstanceLeft->writeImage($output);
         $imageInstanceLeft->clear();
         unset($imageInstanceLeft);
+
         return $output;
     }
 
     /**
      * @param $imagePath
+     *
      * @return string
      */
     public function getCacheKey($imagePath)
     {
         return md5($imagePath);
     }
-
 }
