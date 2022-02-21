@@ -11,7 +11,7 @@ class Utils
 {
     /**
      * @param $path
-     * @param  null  $notLastModifiedSecondsAgo
+     * @param null $notLastModifiedSecondsAgo
      *
      * @return array
      */
@@ -65,6 +65,7 @@ class Utils
 
     /**
      * @param $path
+     *
      * @return array
      */
     public static function getFilesIn($path): array
@@ -79,6 +80,7 @@ class Utils
                 $files[] = $file->getPathname();
             }
         }
+
         return array_unique($files);
     }
 }
